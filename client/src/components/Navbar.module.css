@@ -1,0 +1,109 @@
+.navbar {
+    background-color: #1a202c; /* Dark blue-gray for a professional look */
+    padding: 1rem 2rem;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .logo a {
+    color: #f6ad55; /* Orange for vibrancy */
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .logo a:hover {
+    color: #f6e05e; /* Lighter orange on hover */
+  }
+  
+  /* Desktop Menu */
+  .navLinks {
+    display: flex;
+    list-style: none;
+    gap: 1.5rem;
+  }
+  
+  .navLink {
+    color: #e2e8f0; /* Light gray for contrast */
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .navLink:hover {
+    color: #f6ad55; /* Orange on hover */
+    transform: translateY(-2px);
+  }
+  
+  /* Hamburger Icon */
+  .hamburger {
+    display: none;
+    color: #e2e8f0;
+    cursor: pointer;
+  }
+  
+  /* Mobile Menu */
+  .mobileMenu {
+    list-style: none;
+    background-color: #1a202c;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .mobileMenu.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .mobileLink {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0.75rem;
+    display: block;
+    transition: color 0.3s ease;
+  }
+  
+  .mobileLink:hover {
+    color: #f6ad55;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .navLinks {
+      display: none; /* Hide desktop menu on mobile */
+    }
+  
+    .hamburger {
+      display: block; /* Show hamburger icon on mobile */
+    }
+  }
+  
+  @media (min-width: 769px) {
+    .mobileMenu {
+      display: none; /* Hide mobile menu on desktop */
+    }
+  }

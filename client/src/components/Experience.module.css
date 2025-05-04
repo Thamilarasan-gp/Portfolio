@@ -1,0 +1,157 @@
+.experience {
+    background-color: #1a202c; /* Dark blue-gray matching navbar */
+    padding: 4rem 2rem;
+    color: #e2e8f0; /* Light gray for text */
+  }
+  
+  .experienceContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f6ad55; /* Orange accent */
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #f6ad55;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+  
+  .experienceList {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .experienceCard {
+    background-color: #2d3748; /* Slightly lighter for contrast */
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .experienceCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(246, 173, 85, 0.3); /* Orange glow */
+  }
+  
+  .role {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .company {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #f6ad55; /* Orange for emphasis */
+    margin-bottom: 0.5rem;
+  }
+  
+  .duration {
+    font-size: 1rem;
+    color: #a0aec0; /* Muted gray */
+    margin-bottom: 1rem;
+  }
+  
+  .responsibilities {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .responsibility {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #e2e8f0;
+    margin-bottom: 0.75rem;
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  .responsibility::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #f6ad55;
+    font-size: 1.2rem;
+  }
+  
+  /* Desktop Layout */
+  @media (min-width: 768px) {
+    .experienceList {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+    }
+  
+    .experienceCard {
+      flex: 1;
+      max-width: 500px;
+      min-width: 300px;
+    }
+  
+    .title {
+      font-size: 3rem;
+    }
+  
+    .role {
+      font-size: 1.8rem;
+    }
+  
+    .company {
+      font-size: 1.4rem;
+    }
+  
+    .duration {
+      font-size: 1.1rem;
+    }
+  
+    .responsibility {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 767px) {
+    .experience {
+      padding: 3rem 1rem;
+    }
+  
+    .title {
+      font-size: 2rem;
+    }
+  
+    .experienceCard {
+      padding: 1rem;
+    }
+  
+    .role {
+      font-size: 1.3rem;
+    }
+  
+    .company {
+      font-size: 1.1rem;
+    }
+  
+    .duration {
+      font-size: 0.9rem;
+    }
+  
+    .responsibility {
+      font-size: 0.95rem;
+    }
+  }

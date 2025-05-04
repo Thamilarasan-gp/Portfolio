@@ -1,0 +1,159 @@
+.about {
+    background-color: #2d3748; /* Darker blue-gray to contrast with hero */
+    padding: 4rem 2rem;
+    color: #e2e8f0; /* Light gray for text */
+  }
+  
+  .aboutContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .textContent {
+    max-width: 600px;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f6ad55; /* Orange accent */
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+  .title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #f6ad55;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+  
+  .bio {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #a0aec0; /* Muted gray for readability */
+    margin-bottom: 1rem;
+  }
+  
+  .techContent {
+    text-align: center;
+  }
+  
+  .subtitle {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #e2e8f0;
+    margin-bottom: 1.5rem;
+  }
+  
+  .techGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
+  }
+  
+  .techItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1a202c; /* Dark card background */
+    padding: 1rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .techItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 15px rgba(246, 173, 85, 0.3); /* Orange glow */
+  }
+  
+  .techIcon {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .techItem span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #e2e8f0;
+  }
+  
+  /* Desktop Layout */
+  @media (min-width: 768px) {
+    .aboutContainer {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  
+    .textContent {
+      max-width: 50%;
+      text-align: left;
+    }
+  
+    .title {
+      font-size: 3rem;
+    }
+  
+    .title::after {
+      margin: 0.5rem 0 0;
+    }
+  
+    .bio {
+      font-size: 1.2rem;
+    }
+  
+    .techContent {
+      max-width: 45%;
+      text-align: left;
+    }
+  
+    .subtitle {
+      font-size: 2rem;
+    }
+  
+    .techGrid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 767px) {
+    .about {
+      padding: 3rem 1rem;
+    }
+  
+    .title {
+      font-size: 2rem;
+    }
+  
+    .bio {
+      font-size: 1rem;
+    }
+  
+    .subtitle {
+      font-size: 1.5rem;
+    }
+  
+    .techGrid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    .techItem {
+      padding: 0.75rem;
+    }
+  
+    .techIcon {
+      width: 30px;
+      height: 30px;
+    }
+  }

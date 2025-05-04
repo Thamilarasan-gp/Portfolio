@@ -1,0 +1,224 @@
+.contact {
+    background-color: #2d3748; /* Darker blue-gray for contrast */
+    padding: 4rem 2rem;
+    color: #e2e8f0; /* Light gray for text */
+  }
+  
+  .contactContainer {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #f6ad55; /* Orange accent */
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 4px;
+    background-color: #f6ad55;
+    margin: 0.5rem auto 0;
+    border-radius: 2px;
+  }
+  
+  .contactContent {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .formSection,
+  .detailsSection {
+    flex: 1;
+  }
+  
+  .sectionTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #f6ad55; /* Orange for emphasis */
+    margin-bottom: 1.5rem;
+  }
+  
+  .contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .formGroup {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  
+  .formLabel {
+    font-size: 1rem;
+    color: #e2e8f0;
+    margin-bottom: 0.5rem;
+  }
+  
+  .formInput,
+  .formTextarea {
+    background-color: #1a202c; /* Dark input background */
+    border: 1px solid #4a5568; /* Subtle border */
+    border-radius: 0.375rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+    color: #e2e8f0;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .formInput:focus,
+  .formTextarea:focus {
+    border-color: #f6ad55; /* Orange border on focus */
+  }
+  
+  .formTextarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  .submitButton {
+    background-color: #f6ad55; /* Orange button */
+    color: #1a202c; /* Dark text */
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 0.375rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .submitButton:hover {
+    background-color: #f6e05e; /* Lighter orange */
+    transform: translateY(-2px);
+  }
+  
+  .contactList {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .contactItem {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: #e2e8f0;
+  }
+  
+  .contactIcon {
+    color: #f6ad55; /* Orange icon */
+  }
+  
+  .contactLink {
+    color: #e2e8f0;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .contactLink:hover {
+    color: #f6ad55; /* Orange on hover */
+  }
+  
+  .socialLinks {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .socialIcon {
+    color: #e2e8f0;
+    transition: color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .socialIcon:hover {
+    color: #f6ad55; /* Orange on hover */
+    transform: translateY(-2px);
+  }
+  
+  /* Desktop Layout */
+  @media (min-width: 768px) {
+    .contactContent {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  
+    .formSection {
+      max-width: 50%;
+    }
+  
+    .detailsSection {
+      max-width: 40%;
+      text-align: left;
+    }
+  
+    .title {
+      font-size: 3rem;
+    }
+  
+    .sectionTitle {
+      font-size: 1.8rem;
+    }
+  
+    .contactItem {
+      font-size: 1.1rem;
+    }
+  }
+  
+  /* Mobile Adjustments */
+  @media (max-width: 767px) {
+    .contact {
+      padding: 3rem 1rem;
+    }
+  
+    .title {
+      font-size: 2rem;
+    }
+  
+    .sectionTitle {
+      font-size: 1.3rem;
+    }
+  
+    .contactForm {
+      max-width: 100%;
+    }
+  
+    .formInput,
+    .formTextarea {
+      font-size: 0.95rem;
+      padding: 0.6rem;
+    }
+  
+    .submitButton {
+      padding: 0.6rem 1.2rem;
+      font-size: 0.95rem;
+    }
+  
+    .contactItem {
+      font-size: 0.95rem;
+    }
+  
+    .socialLinks {
+      gap: 1rem;
+    }
+  
+    .socialIcon {
+      font-size: 1.2rem;
+    }
+  }
