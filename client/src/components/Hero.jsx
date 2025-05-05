@@ -10,6 +10,7 @@ import {
   FaBehance,
 } from "react-icons/fa";
 import styles from "./Hero.module.css";
+import Myprofile from "../assets/Myprofile.png";
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -344,7 +345,7 @@ const Hero = () => {
             <div className={styles.profileImage}>
               {/* Replace with your actual image */}
               <img
-                src="/images/profile.jpg"
+                src={Myprofile}
                 alt="Profile picture of Thamilarasan"
                 className={styles.profileImage}
               />
