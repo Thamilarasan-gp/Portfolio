@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import styles from "./Hero.module.css";
 import Myprofile from "../assets/Myprofile.png";
+import { useSpring, animated } from "@react-spring/web";
 
 const Hero = () => {
   const heroRef = useRef(null);
@@ -23,18 +24,58 @@ const Hero = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
+  const [tiltAngle, setTiltAngle] = useState({ x: 0, y: 0 });
 
-  // Handle mouse movement for parallax effects with smoothing
+  // Smooth animations with react-spring
+  const profileSpring = useSpring({
+    transform: isLoaded 
+      ? `perspective(1000px) rotateY(${tiltAngle.x}deg) rotateX(${-tiltAngle.y}deg) translateZ(50px)`
+      : 'perspective(1000px) rotateY(0deg) rotateX(0deg) translateZ(0px)',
+    config: { mass: 5, tension: 350, friction: 40 }
+  });
+
+  const titleSpring = useSpring({
+    opacity: isLoaded ? 1 : 0,
+    transform: isLoaded ? 'translateY(0px)' : 'translateY(40px)',
+    config: { mass: 1, tension: 280, friction: 60 }
+  });
+
+  const floatingElements = useSpring({
+    from: { y: 0 },
+    to: async (next) => {
+      while (true) {
+        await next({ y: -20 });
+        await next({ y: 0 });
+      }
+    },
+    config: { duration: 4000 },
+    loop: true,
+  });
+
+  // Handle mouse movement for 3D effect with smoothing
   useEffect(() => {
     let animationFrameId;
     let targetMousePosition = { x: 0, y: 0 };
     let currentMousePosition = { x: 0, y: 0 };
 
     const handleMouseMove = (e) => {
+      const rect = heroRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      
+      // Calculate mouse position relative to hero section center
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
       targetMousePosition = {
-        x: e.clientX / window.innerWidth,
-        y: e.clientY / window.innerHeight,
+        x: (e.clientX - rect.left - centerX) / centerX, // Range from -1 to 1
+        y: (e.clientY - rect.top - centerY) / centerY,  // Range from -1 to 1
       };
+
+      // Calculate tilt angle based on mouse position (limited to ±15 degrees)
+      setTiltAngle({
+        x: targetMousePosition.x * 15,
+        y: targetMousePosition.y * 15
+      });
 
       setCursorPosition({
         x: e.clientX,
@@ -96,27 +137,6 @@ const Hero = () => {
   useEffect(() => {
     if (!heroRef.current) return;
 
-    // Circle background parallax
-    if (circleRef.current) {
-      circleRef.current.style.transform = `translate(${
-        mousePosition.x * 50 - 25
-      }px, ${mousePosition.y * 50 - 25}px)`;
-    }
-
-    // Profile image parallax
-    if (profileRef.current) {
-      profileRef.current.style.transform = `translate(${
-        mousePosition.x * 30 - 15
-      }px, ${mousePosition.y * 30 - 15}px) rotate(${mousePosition.x * 8}deg)`;
-    }
-
-    // Title parallax
-    if (titleRef.current) {
-      titleRef.current.style.transform = `translate(${
-        mousePosition.x * -20
-      }px, ${mousePosition.y * -20}px)`;
-    }
-
     // Apply parallax to all elements with the parallax class
     const parallaxElements = document.querySelectorAll(
       `.${styles.parallaxElement}`
@@ -145,51 +165,74 @@ const Hero = () => {
     }, 100);
   }, []);
 
-  // Generate floating particles
+  // Generate floating particles with 3D depth
   const renderParticles = () => {
-    return Array(20)
+    return Array(30)
       .fill(null)
-      .map((_, index) => (
-        <div
-          key={index}
-          className={`${styles.particle} ${styles.parallaxElement}`}
-          data-speed={Math.random() * 15 + 5}
-          data-direction={index % 2 === 0 ? "normal" : "reverse"}
-          style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDuration: `${Math.random() * 10 + 10}s`,
-            animationDelay: `${Math.random() * 5}s`,
-            width: `${Math.random() * 10 + 5}px`,
-            height: `${Math.random() * 10 + 5}px`,
-            opacity: Math.random() * 0.5 + 0.3,
-          }}
-        />
-      ));
+      .map((_, index) => {
+        const isSmall = Math.random() > 0.7;
+        const depth = Math.random() * 100; // Z-depth between 0-100
+        const size = isSmall ? Math.random() * 5 + 2 : Math.random() * 15 + 8;
+        const colorIndex = Math.floor(Math.random() * 6);
+        const colors = ['#9cf6fb', '#e1fcfd', '#394f8a', '#4a5fc1', '#e5b9a8', '#ead6cd'];
+        
+        return (
+          <div
+            key={index}
+            className={`${styles.particle} ${styles.parallaxElement}`}
+            data-speed={Math.random() * 15 + 5}
+            data-direction={index % 2 === 0 ? "normal" : "reverse"}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              animationDuration: `${Math.random() * 20 + 15}s`,
+              animationDelay: `${Math.random() * 5}s`,
+              width: `${size}px`,
+              height: `${size}px`,
+              opacity: 0.3 + (depth / 100) * 0.6, // Deeper particles are more visible
+              backgroundColor: colors[colorIndex],
+              boxShadow: `0 0 ${size/2}px ${colors[colorIndex]}`,
+              filter: `blur(${isSmall ? 0 : 2}px)`,
+              transform: `translateZ(${depth}px)`,
+            }}
+          />
+        );
+      });
   };
 
-  // Generate grid lines
-  const renderGridLines = () => {
+  // Generate 3D grid for depth
+  const render3DGrid = () => {
     return (
-      <div className={styles.gridContainer}>
-        {Array(5)
-          .fill(null)
-          .map((_, i) => (
-            <div
-              key={`h-${i}`}
-              className={`${styles.gridLine} ${styles.horizontalLine}`}
-              style={{ top: `${(i + 1) * 20}%` }}
-            />
-          ))}
-        {Array(5)
-          .fill(null)
-          .map((_, i) => (
-            <div
-              key={`v-${i}`}
-              className={`${styles.gridLine} ${styles.verticalLine}`}
-              style={{ left: `${(i + 1) * 20}%` }}
-            />
-          ))}
+      <div className={styles.grid3DContainer}>
+        {Array(6).fill(null).map((_, i) => (
+          <div 
+            key={`grid-plane-${i}`} 
+            className={styles.gridPlane}
+            style={{
+              transform: `translateZ(${i * -50}px) rotateX(90deg)`,
+              opacity: 1 - (i * 0.15)
+            }}
+          >
+            {Array(5).fill(null).map((_, j) => (
+              <div 
+                key={`grid-line-${j}`}
+                className={styles.gridLine3D}
+                style={{
+                  left: `${j * 25}%`,
+                }}
+              />
+            ))}
+            {Array(5).fill(null).map((_, j) => (
+              <div 
+                key={`grid-line-h-${j}`}
+                className={`${styles.gridLine3D} ${styles.horizontal}`}
+                style={{
+                  top: `${j * 25}%`,
+                }}
+              />
+            ))}
+          </div>
+        ))}
       </div>
     );
   };
@@ -242,22 +285,39 @@ const Hero = () => {
         </div>
       )}
 
-      {/* Background elements */}
-      <div className={styles.heroBackground}>
-        <div className={styles.circle} ref={circleRef}></div>
-        <div
-          className={`${styles.circle2} ${styles.parallaxElement}`}
-          data-speed="20"
-          data-direction="normal"
-        ></div>
-        <div
-          className={`${styles.circle3} ${styles.parallaxElement}`}
-          data-speed="15"
-          data-direction="reverse"
-        ></div>
-        <div className={styles.scanlines}></div>
-        {renderParticles()}
-        {renderGridLines()}
+      {/* 3D Background Scene */}
+      <div className={styles.scene3D}>
+        {render3DGrid()}
+        
+        <div className={styles.heroBackground}>
+          <div 
+            className={styles.circle} 
+            ref={circleRef}
+            style={{
+              transform: `translate(-50%, -50%) translateZ(10px) scale(${isLoaded ? 1 : 0.8})`,
+            }}
+          ></div>
+          <animated.div
+            className={`${styles.circle2} ${styles.parallaxElement}`}
+            data-speed="20"
+            data-direction="normal"
+            style={{
+              ...floatingElements,
+              transform: `translateZ(30px) scale(${isLoaded ? 1 : 0.5})`,
+            }}
+          ></animated.div>
+          <animated.div
+            className={`${styles.circle3} ${styles.parallaxElement}`}
+            data-speed="15"
+            data-direction="reverse"
+            style={{
+              ...floatingElements,
+              transform: `translateZ(20px) scale(${isLoaded ? 1 : 0.5})`,
+            }}
+          ></animated.div>
+          <div className={styles.scanlines}></div>
+          {renderParticles()}
+        </div>
       </div>
 
       {/* Flowing social icons */}
@@ -277,13 +337,11 @@ const Hero = () => {
         ))}
       </div>
 
-      {/* Caution tape style elements */}
-     
-
       <div className={styles.heroContainer}>
-        {/* Text Content */}
-        <div
+        {/* Text Content with 3D effect */}
+        <animated.div
           className={`${styles.textContent} ${isLoaded ? styles.textLoaded : ""}`}
+          style={titleSpring}
         >
           <div className={styles.titleWrapper}>
             <h1 className={styles.title} ref={titleRef}>
@@ -335,17 +393,19 @@ const Hero = () => {
               </div>
             </a>
           </div>
-        </div>
+        </animated.div>
 
-        {/* Profile Image */}
+        {/* Profile Image with 3D tilt effect */}
         <div
           className={`${styles.imageContent} ${isLoaded ? styles.imageLoaded : ""}`}
         >
-          <div className={styles.profileWrapper} ref={profileRef}>
+          <animated.div 
+            className={styles.profileWrapper} 
+            style={profileSpring}
+          >
             <div className={styles.profileImage}>
-              {/* Replace with your actual image */}
               <img
-                src={Myprofile}
+                src={Myprofile || "/placeholder.svg"}
                 alt="Profile picture of Thamilarasan"
                 className={styles.profileImage}
               />
@@ -356,7 +416,7 @@ const Hero = () => {
 
             {/* Orbiting elements */}
             <div className={styles.orbitingElementsContainer}>
-              {Array(3)
+              {Array(5)
                 .fill(null)
                 .map((_, i) => (
                   <div
@@ -371,7 +431,7 @@ const Hero = () => {
                   </div>
                 ))}
             </div>
-          </div>
+          </animated.div>
         </div>
       </div>
 
