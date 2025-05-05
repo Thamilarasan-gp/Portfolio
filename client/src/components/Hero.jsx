@@ -9,7 +9,7 @@ import {
   FaInstagram,
   FaBehance,
 } from "react-icons/fa";
-import styles from "./hero.module.css";
+import styles from "./Hero.module.css";
 
 const Hero = () => {
   const heroRef = useRef(null);
