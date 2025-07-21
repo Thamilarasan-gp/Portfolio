@@ -22,7 +22,7 @@ function Hero() {
   }, []);
 
   return (
-    <div className={styles.container}>
+    <div id="home" className={styles.container}>
       {/* Background Text */}
       <h1 className={styles.backgroundText}>THAMIL ARASAN</h1>
 
