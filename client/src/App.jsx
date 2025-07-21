@@ -1,8 +1,8 @@
-
 import './App.css';
 import About from './components/About';
 import Achievements from './components/Achievements';
 import Achievements2 from './components/Achievements2';
+import Chatbot from './components/Chatbot';
 import CompetitiveProgramming from './components/CompetitiveProgramming';
 import Contact from './components/Contact';
 import DecryptingView from './components/DecryptingView';
@@ -16,7 +16,6 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import SkillsBlock from './components/SkillsBlock';
 import TechStack from './components/TechStack';
-
 function App() {
   return (
     <div className="portfolio">
@@ -27,7 +26,7 @@ function App() {
      <Experience/>
    <Projects/>
    <DockApp/>
-   
+<Chatbot/>
     <CompetitiveProgramming/>
    <Achievements/>
    {/* <Skills/> */}

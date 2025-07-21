@@ -1,0 +1,106 @@
+.container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.chatWindow {
+  width: 350px;
+  height: 500px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chatHeader {
+  background: linear-gradient(to right, #3b82f6, #8b5cf6);
+  color: white;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.messagesContainer {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  background: #f9fafb;
+}
+
+.userMessage {
+  background: #3b82f6;
+  color: white;
+  border-radius: 10px 10px 0 10px;
+  padding: 8px 12px;
+  margin-left: auto;
+  margin-bottom: 8px;
+  max-width: 80%;
+}
+
+.botMessage {
+  background: #e5e7eb;
+  color: #111827;
+  border-radius: 10px 10px 10px 0;
+  padding: 8px 12px;
+  margin-right: auto;
+  margin-bottom: 8px;
+  max-width: 80%;
+}
+
+.inputContainer {
+  display: flex;
+  padding: 10px;
+  background: white;
+  border-top: 1px solid #e5e7eb;
+}
+
+.inputField {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #e5e7eb;
+  border-radius: 20px;
+  outline: none;
+}
+
+.sendButton {
+  background: #3b82f6;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 8px 16px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.sendButton:hover {
+  background: #2563eb;
+}
+
+.robotIcon {
+  width: 60px;
+  height: 60px;
+  background: #3b82f6;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  margin-left: auto;
+}
+
+.robotIcon:hover {
+  transform: scale(1.1);
+  background: #2563eb;
+}
+
+.robotIcon img {
+  width: 80%;
+  height: 90%;
+  object-fit: contain;
+}
