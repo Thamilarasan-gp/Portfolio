@@ -1,159 +1,290 @@
-.about {
-    background-color: #2d3748; /* Darker blue-gray to contrast with hero */
-    padding: 4rem 2rem;
-    color: #e2e8f0; /* Light gray for text */
-  }
-  
-  .aboutContainer {
+/* About.module.css */
+
+/* Section Container */
+.aboutSection {
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f9f9ff 0%, #f0e9ff 100%);
+}
+
+.aboutSection::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.3)" d="M0,0 L100,0 L100,100 L0,100 Z" /></svg>');
+    opacity: 0.1;
+    z-index: 0;
+}
+
+/* Main Container */
+.aboutContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
     max-width: 1200px;
     margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-  }
-  
-  .textContent {
+    padding: 0 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Image Section */
+.aboutImage {
+    flex: 1;
+    position: relative;
+    max-width: 500px;
+}
+
+.imageWrapper {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+    transform: perspective(1000px) rotateY(-10deg);
+    transition: transform 0.5s ease;
+}
+
+.profileImage {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 20px;
+    position: relative;
+    z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.imageBorder {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border: 3px solid #7e22ce;
+    border-radius: 25px;
+    z-index: 1;
+    opacity: 0.7;
+    transition: all 0.5s ease;
+}
+
+.imageGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(45deg, #7e22ce, #3b82f6);
+    z-index: 0;
+    opacity: 0.1;
+    filter: blur(20px);
+}
+
+.aboutImage:hover .imageWrapper {
+    transform: perspective(1000px) rotateY(0deg);
+}
+
+.aboutImage:hover .profileImage {
+    transform: scale(1.03);
+}
+
+.aboutImage:hover .imageBorder {
+    top: -15px;
+    left: -15px;
+    right: -15px;
+    bottom: -15px;
+    opacity: 0.9;
+}
+
+/* Content Section */
+.aboutContent {
+    flex: 1;
     max-width: 600px;
-    text-align: center;
-  }
-  
-  .title {
+}
+
+.sectionTitle {
     font-size: 2.5rem;
     font-weight: 700;
-    color: #f6ad55; /* Orange accent */
     margin-bottom: 1.5rem;
+    color: #1e293b;
     position: relative;
-  }
-  
-  .title::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 4px;
-    background-color: #f6ad55;
-    margin: 0.5rem auto 0;
-    border-radius: 2px;
-  }
-  
-  .bio {
+    display: inline-block;
+}
+
+.titleText {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(90deg, #7e22ce, #3b82f6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.titleUnderline {
+    position: absolute;
+    bottom: 5px;
+    top:40px;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    background: linear-gradient(90deg, rgba(126, 34, 206, 0.2), rgba(59, 130, 246, 0.2));
+    z-index: 1;
+    border-radius: 5px;
+    transform: scaleX(0.9);
+    transition: transform 0.3s ease;
+}
+
+.sectionTitle:hover .titleUnderline {
+    transform: scaleX(1);
+}
+
+.aboutText {
+    margin-bottom: 2rem;
+}
+
+.aboutText p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: #a0aec0; /* Muted gray for readability */
-    margin-bottom: 1rem;
-  }
-  
-  .techContent {
-    text-align: center;
-  }
-  
-  .subtitle {
-    font-size: 1.8rem;
-    font-weight: 600;
-    color: #e2e8f0;
+    color: #475569;
     margin-bottom: 1.5rem;
-  }
-  
-  .techGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 1.5rem;
-    justify-items: center;
-  }
-  
-  .techItem {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.aboutText p::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.7em;
+    height: 6px;
+    width: 6px;
+    background: #7e22ce;
+    border-radius: 50%;
+}
+
+.aboutText p:hover {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
+/* Actions Section */
+.aboutActions {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    background-color: #1a202c; /* Dark card background */
-    padding: 1rem;
-    border-radius: 0.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .techItem:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 15px rgba(246, 173, 85, 0.3); /* Orange glow */
-  }
-  
-  .techIcon {
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.resumeButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    background: linear-gradient(90deg, #7e22ce, #3b82f6);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    position: relative;
+    overflow: hidden;
+}
+
+.resumeButton::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: all 0.5s ease;
+}
+
+.resumeButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.resumeButton:hover::before {
+    left: 100%;
+}
+
+.socialLinks {
+    display: flex;
+    gap: 1rem;
+}
+
+.socialLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 40px;
     height: 40px;
-    margin-bottom: 0.5rem;
-  }
-  
-  .techItem span {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #e2e8f0;
-  }
-  
-  /* Desktop Layout */
-  @media (min-width: 768px) {
+    border-radius: 50%;
+    background: white;
+    color: #7e22ce;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.socialLink:hover {
+    transform: translateY(-3px);
+    color: white;
+    background: linear-gradient(90deg, #7e22ce, #3b82f6);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Animation Classes */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
     .aboutContainer {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
+        flex-direction: column;
+        gap: 40px;
     }
-  
-    .textContent {
-      max-width: 50%;
-      text-align: left;
+    
+    .aboutImage {
+        max-width: 400px;
     }
-  
-    .title {
-      font-size: 3rem;
+    
+    .sectionTitle {
+        font-size: 2rem;
     }
-  
-    .title::after {
-      margin: 0.5rem 0 0;
+    
+    .aboutText p {
+        font-size: 1rem;
     }
-  
-    .bio {
-      font-size: 1.2rem;
+}
+
+@media (max-width: 576px) {
+    .aboutSection {
+        padding: 60px 0;
     }
-  
-    .techContent {
-      max-width: 45%;
-      text-align: left;
+    
+    .aboutActions {
+        flex-direction: column;
+        align-items: flex-start;
     }
-  
-    .subtitle {
-      font-size: 2rem;
+    
+    .socialLinks {
+        margin-top: 1rem;
     }
-  
-    .techGrid {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  }
-  
-  /* Mobile Adjustments */
-  @media (max-width: 767px) {
-    .about {
-      padding: 3rem 1rem;
-    }
-  
-    .title {
-      font-size: 2rem;
-    }
-  
-    .bio {
-      font-size: 1rem;
-    }
-  
-    .subtitle {
-      font-size: 1.5rem;
-    }
-  
-    .techGrid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    .techItem {
-      padding: 0.75rem;
-    }
-  
-    .techIcon {
-      width: 30px;
-      height: 30px;
-    }
-  }
+}

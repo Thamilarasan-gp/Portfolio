@@ -1,114 +1,73 @@
-import React from 'react';
+
 import styles from './Footer.module.css';
-import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa'; // Social media icons
+import { FaUser, FaLaptopCode, FaBriefcase, FaFolder, FaTrophy, FaEnvelope } from 'react-icons/fa';
+import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from 'react-icons/fi';
 
-const Footer = () => {
-  const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
-  ];
-
-  const socialLinks = [
-    {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/in/yourusername',
-      icon: <FaLinkedin size={24} />,
-    },
-    {
-      name: 'GitHub',
-      href: 'https://github.com/yourusername',
-      icon: <FaGithub size={24} />,
-    },
-    {
-      name: 'X',
-      href: 'https://x.com/yourusername',
-      icon: <FaTwitter size={24} />,
-    },
-  ];
-
-  return (
-    <footer className={styles.footer}>
-      <div className={styles.footerContainer}>
-        {/* Quick Links */}
-        <div className={styles.footerSection}>
-          <h3 className={styles.sectionTitle}>Quick Links</h3>
-          <ul className={styles.linkList}>
-            {quickLinks.map((link, index) => (
-              <li key={index}>
-                <a href={link.href} className={styles.footerLink}>
-                  {link.name}
-                </a>
-              </li>
-            ))}
-          </ul>
+const Footer = () => (
+  <footer className={styles.footer}>
+    <div className={styles.footerContent}>
+      {/* Profile/Info */}
+      <div className={styles.profileSection}>
+        <div className={styles.profileTitle}>
+          <span className={styles.profileName}>Thamilarasan G P</span>
         </div>
-
-        {/* Contact Info */}
-        <div className={styles.footerSection}>
-          <h3 className={styles.sectionTitle}>Contact</h3>
-          <p className={styles.contactInfo}>
-            Email:{' '}
-            <a
-              href="mailto:your.email@example.com"
-              className={styles.footerLink}
-            >
-              your.email@example.com
-            </a>
-          </p>
-          <p className={styles.contactInfo}>
-            LinkedIn:{' '}
-            <a
-              href="https://linkedin.com/in/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.footerLink}
-            >
-              /yourusername
-            </a>
-          </p>
-          <p className={styles.contactInfo}>
-            GitHub:{' '}
-            <a
-              href="https://github.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.footerLink}
-            >
-              /yourusername
-            </a>
-          </p>
-        </div>
-
-        {/* Social Media */}
-        <div className={styles.footerSection}>
-          <h3 className={styles.sectionTitle}>Follow Me</h3>
-          <div className={styles.socialLinks}>
-            {socialLinks.map((social, index) => (
-              <a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={styles.socialIcon}
-                title={social.name}
-              >
-                {social.icon}
-              </a>
-            ))}
-          </div>
+        <div className={styles.profileDesc}>
+          Full Stack Developer passionate about creating innovative digital solutions.
         </div>
       </div>
 
-      {/* Copyright */}
-      <div className={styles.copyright}>
-        <p>&copy; {new Date().getFullYear()} Your Name. All rights reserved.</p>
+      {/* Quick Links */}
+      <div className={styles.quickLinks}>
+        <div className={styles.linksTitle}>Quick Links</div>
+        <div className={styles.linksGrid}>
+          <a href="#about">
+            <FaUser className={styles.linkIcon} /> About
+          </a>
+          <a href="#skills">
+            <FaLaptopCode className={styles.linkIcon} /> Skills
+          </a>
+          <a href="#experience">
+            <FaBriefcase className={styles.linkIcon} /> Experience
+          </a>
+          <a href="#projects">
+            <FaFolder className={styles.linkIcon} /> Projects
+          </a>
+          <a href="#achievements">
+            <FaTrophy className={styles.linkIcon} /> Achievements
+          </a>
+          <a href="#contact">
+            <FaEnvelope className={styles.linkIcon} /> Contact
+          </a>
+        </div>
       </div>
-    </footer>
-  );
-};
+
+      {/* Connect/Social */}
+      <div className={styles.connectSection}>
+        <div className={styles.linksTitle}>Connect</div>
+        <div className={styles.socialIcons}>
+          <a href="#" aria-label="GitHub">
+            <FiGithub size={24} />
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <FiLinkedin size={24} />
+          </a>
+          <a href="#" aria-label="Email">
+            <FiMail size={24} />
+          </a>
+        </div>
+        <button 
+          className={styles.backToTop} 
+          onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}
+        >
+          <FiArrowUp className={styles.arrowIcon} /> Back to Top
+        </button>
+      </div>
+    </div>
+    <hr className={styles.divider} />
+    <div className={styles.copyright}>
+      © {new Date().getFullYear()} Thamilarasan G P. All rights reserved.
+    </div>
+  </footer>
+);
 
 export default Footer;

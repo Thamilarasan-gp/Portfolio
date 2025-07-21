@@ -405,3 +405,82 @@
       height: 30px;
     }
   }
+
+  /* Previous styles remain the same, add these new styles: */
+
+/* Background name text */
+.backgroundName {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-40%, -40%);
+    font-size: 10rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    z-index: 0;
+    letter-spacing: 10px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    font-family: 'Poppins', sans-serif;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  /* Tagline above background name */
+  .tagline {
+    position: absolute;
+    top: calc(50% - 100px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    font-weight: 300;
+    z-index: 0;
+    white-space: nowrap;
+    font-family: 'Poppins', sans-serif;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  /* Responsive adjustments for background text */
+  @media (max-width: 1200px) {
+    .backgroundName {
+      font-size: 10rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .backgroundName {
+      font-size: 8rem;
+    }
+    .tagline {
+      font-size: 1.2rem;
+      top: calc(50% - 80px);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .backgroundName {
+      font-size: 5rem;
+      letter-spacing: 5px;
+    }
+    .tagline {
+      font-size: 1rem;
+      top: calc(50% - 60px);
+      letter-spacing: 3px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .backgroundName {
+      font-size: 3.5rem;
+      letter-spacing: 3px;
+    }
+    .tagline {
+      font-size: 0.8rem;
+      top: calc(50% - 50px);
+      letter-spacing: 2px;
+    }
+  }

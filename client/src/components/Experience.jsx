@@ -1,63 +1,162 @@
 import React from 'react';
 import styles from './Experience.module.css';
 
-const experiences = [
-  {
-    role: 'Software Engineering Intern',
-    company: 'XYZ Corp',
-    duration: 'Jun 2024 - Aug 2024',
-    responsibilities: [
-      'Developed RESTful APIs using Node.js and Express, reducing data retrieval time by 20%.',
-      'Implemented responsive UI components with React, improving user engagement by 15%.',
-      'Optimized MongoDB queries, enhancing backend performance for a real-time tracking app.',
-      'Collaborated in Agile sprints, integrating CI/CD pipelines with GitHub Actions.',
-    ],
-  },
-  {
-    role: 'Freelance Developer',
-    company: 'Self-Employed',
-    duration: 'Jan 2024 - May 2024',
-    responsibilities: [
-      'Built a full-stack e-commerce platform using React, Node.js, and MongoDB for a local business.',
-      'Designed and deployed a scalable backend with AWS, handling 1,000+ daily users.',
-      'Integrated payment gateways, ensuring secure transactions with 99.9% uptime.',
-    ],
-  },
-  {
-    role: 'Hackathon Lead Developer',
-    company: 'ABC University Hackathon',
-    duration: 'Mar 2024',
-    responsibilities: [
-      'Led a team to develop BusMate, a real-time bus tracking app using React Native and LoRa.',
-      'Implemented WebSocket for live updates, achieving sub-second latency.',
-      'Won 1st place for innovative use of offline connectivity in a 24-hour hackathon.',
-    ],
-  },
-];
-
 const Experience = () => {
+  const experienceData = [
+    {
+      type: 'experience',
+      title: 'MERN Stack Internship',
+      company: 'Better Tomorrow',
+      date: 'Jan 2024',
+      location: 'Remote',
+      description: [
+        'Completed a full-stack MERN project titled BookHive, a dynamic online platform for managing and exploring books.',
+        'Implemented features such as user authentication, book listings, reviews, and responsive UI to enhance user interaction and accessibility.'
+      ],
+      skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST API'],
+      position: 'left'
+    }
+  ];
+
+  const educationData = [
+    {
+      type: 'education',
+      title: 'B.Tech (Information Technology)',
+      institution: 'University',
+      date: '2023-2027',
+      grade: '8.30 CGPA',
+      description: 'Currently pursuing Bachelor of Technology in Information Technology with focus on software development, data structures, algorithms, and modern web technologies.',
+      skills: [],
+      position: 'right'
+    },
+    {
+      type: 'education',
+      title: 'HSC (Higher Secondary Certificate)',
+      institution: 'School',
+      date: '2022-2023',
+      grade: '88.3%',
+      description: 'Completed higher secondary education with distinction in Mathematics, Physics, Chemistry, and Biology',
+      skills: [],
+      position: 'right'
+    }
+  ];
+
+  const projectData = [
+    {
+      type: 'project',
+      title: 'Namma Spot Team Lead',
+      company: 'Better Tomorrow',
+      date: 'Jan 2024',
+      location: 'Remote',
+      description: [
+        'Led a team in developing a location-based platform for discovering and sharing local spots.',
+        'Implemented real-time features, user-generated content, and responsive design for optimal user experience.'
+      ],
+      skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST API', 'Team Leadership'],
+      position: 'left'
+    }
+  ];
+
+  // Combine in the order: Experience → Education → Projects
+  const allItems = [...experienceData, ...educationData, ...projectData];
+
+  const getTypeIcon = (type) => {
+    switch (type) {
+      case 'experience':
+        return '💼';
+      case 'project':
+        return '🚀';
+      case 'education':
+        return '🎓';
+      default:
+        return '📍';
+    }
+  };
+
+  const getTypeColor = (type) => {
+    switch (type) {
+      case 'experience':
+        return '#2563eb';
+      case 'project':
+        return '#dc2626';
+      case 'education':
+        return '#16a34a';
+      default:
+        return '#6b7280';
+    }
+  };
+
   return (
-    <section id="experience" className={styles.experience}>
-      <div className={styles.experienceContainer}>
-        <h2 className={styles.title}>Experience</h2>
-        <div className={styles.experienceList}>
-          {experiences.map((exp, index) => (
-            <div key={index} className={styles.experienceCard}>
-              <h3 className={styles.role}>{exp.role}</h3>
-              <h4 className={styles.company}>{exp.company}</h4>
-              <p className={styles.duration}>{exp.duration}</p>
-              <ul className={styles.responsibilities}>
-                {exp.responsibilities.map((resp, idx) => (
-                  <li key={idx} className={styles.responsibility}>
-                    {resp}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+    <div className={styles.experience}>
+      <div className={styles.header}>
+        <h1 className={styles.title}>Experience & Education</h1>
+        <p className={styles.subtitle}>My professional journey and academic background</p>
       </div>
-    </section>
+
+      <div className={styles.timelineContainer}>
+        <div className={styles.timelineLine}></div>
+        
+        {allItems.map((item, index) => (
+          <div 
+            key={index} 
+            className={`${styles.timelineItem} ${item.position === 'right' ? styles.timelineItemRight : styles.timelineItemLeft}`}
+          >
+            <div 
+              className={styles.timelineCircle} 
+              style={{ backgroundColor: getTypeColor(item.type) }}
+            >
+              <span className={styles.timelineIcon}>{getTypeIcon(item.type)}</span>
+            </div>
+            
+            <div className={styles.timelineCard}>
+              <div className={styles.cardHeader}>
+                <h3 className={styles.itemTitle}>{item.title}</h3>
+                <span 
+                  className={styles.itemType} 
+                  style={{ backgroundColor: getTypeColor(item.type) }}
+                >
+                  {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
+                </span>
+              </div>
+              
+              {item.company && (
+                <p className={styles.company}>{item.company}</p>
+              )}
+              
+              {item.institution && (
+                <p className={styles.company}>{item.institution}</p>
+              )}
+              
+              <div className={styles.details}>
+                <span className={styles.date}>{item.date}</span>
+                {item.location && <span className={styles.location}>{item.location}</span>}
+                {item.grade && <span className={styles.grade}>{item.grade}</span>}
+              </div>
+              
+              <div className={styles.description}>
+                {Array.isArray(item.description) ? (
+                  <ul>
+                    {item.description.map((desc, idx) => (
+                      <li key={idx}>{desc}</li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p>{item.description}</p>
+                )}
+              </div>
+              
+              {item.skills && item.skills.length > 0 && (
+                <div className={styles.skills}>
+                  {item.skills.map((skill, idx) => (
+                    <span key={idx} className={styles.skill}>{skill}</span>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

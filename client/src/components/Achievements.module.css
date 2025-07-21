@@ -1,0 +1,525 @@
+/* Base section styles */
+.achievementsSection {
+  padding: 80px 0;
+  background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 50%, #f3e8ff 100%);
+  position: relative;
+  overflow: hidden;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+}
+
+/* Background decorative elements */
+.bgDecoration {
+  position: absolute;
+  width: 288px;
+  height: 288px;
+  border-radius: 50%;
+  mix-blend-mode: multiply;
+  filter: blur(64px);
+  opacity: 0.2;
+  animation: pulse 4s ease-in-out infinite;
+}
+
+.bgDecorationLeft {
+  top: 0;
+  left: 0;
+  background: #3b82f6;
+}
+
+.bgDecorationRight {
+  bottom: 0;
+  right: 0;
+  background: #8b5cf6;
+  animation-delay: 2s;
+}
+
+/* Header styles */
+.header {
+  text-align: center;
+  margin-bottom: 64px;
+  transform: translateY(32px);
+  opacity: 0;
+  transition: all 0.7s ease-out;
+}
+
+.headerVisible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.headerBadge {
+  display: inline-block;
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #dbeafe, #e9d5ff);
+  border-radius: 9999px;
+  margin-bottom: 16px;
+}
+
+.headerBadgeText {
+  font-size: 0.875rem;
+  font-weight: 500;
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.headerTitle {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+
+.headerTitleGradient {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.headerSubtitle {
+  font-size: 1.25rem;
+  color: #6b7280;
+  max-width: 512px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Timeline styles */
+.timelineContainer {
+  max-width: 1024px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, #bfdbfe, #c4b5fd, #f8bbd9);
+}
+
+.achievementsList {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Achievement item styles */
+.achievementItem {
+  position: relative;
+  display: flex;
+  gap: 24px;
+  padding-bottom: 48px;
+  transform: translateY(32px);
+  opacity: 0;
+  transition: all 0.7s ease-out;
+  transition-delay: var(--delay);
+}
+
+.achievementItem.visible {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.timelineDot {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.iconContainer {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 10;
+  transition: transform 0.3s ease;
+}
+
+.iconContainer:hover {
+  transform: scale(1.1);
+}
+
+.icon {
+  font-size: 1.25rem;
+  color: white !important;
+}
+
+.pulseRing {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+  opacity: 0.2;
+  z-index: -1;
+}
+
+/* Content card styles */
+.contentCard {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.contentCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.backgroundGradient {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contentCard:hover .backgroundGradient {
+  opacity: 0.05;
+}
+
+.dateBadge {
+  display: inline-block;
+  padding: 4px 12px;
+  background: #dbeafe;
+  color: #2563eb;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.contentCard:hover .title {
+  background: linear-gradient(135deg, #2563eb, #7c3aed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.institution {
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.institutionDot {
+  width: 8px;
+  height: 8px;
+  background: #60a5fa;
+  border-radius: 50%;
+  margin-right: 8px;
+}
+
+.pointsList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.point {
+  display: flex;
+  align-items: flex-start;
+  color: #374151;
+  line-height: 1.6;
+  transition: transform 0.3s ease;
+}
+
+.point:hover {
+  transform: translateX(4px);
+}
+
+.pointDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 8px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.cornerAccent {
+  position: absolute;
+  top: 0;
+  right: 90px; /* Adjusted for larger logoContainer */
+  width: 80px;
+  height: 80px;
+  border-bottom-left-radius: 50%;
+  opacity: 0.1;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+}
+
+.contentCard:hover .cornerAccent {
+  transform: scale(1);
+}
+
+/* Color variants */
+.amber {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.blue {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+}
+
+.purple {
+  background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+}
+
+.emerald {
+  background: linear-gradient(135deg, #34d399, #10b981);
+}
+
+.pink {
+  background: linear-gradient(135deg, #f472b6, #ec4899);
+}
+
+.indigo {
+  background: linear-gradient(135deg, #818cf8, #6366f1);
+}
+
+/* Image container styles */
+.logoContainer {
+  position: absolute;
+  top: 20px;
+  right: 15px;
+  width: 120px; /* Increased from 60px */
+  height: 180px; /* Increased from 60px */
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 40px; /* Added border-radius */
+  overflow: hidden;
+}
+
+.institutionLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: 45px; /* Added border-radius */
+}
+
+.imagePlaceholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f0f0f0;
+  color: #6b7280;
+  font-size: 0.75rem;
+}
+
+/* Animations */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.3;
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Media queries */
+@media (max-width: 768px) {
+  .achievementsSection {
+    padding: 60px 0;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .header {
+    margin-bottom: 48px;
+  }
+
+  .headerTitle {
+    font-size: 2rem;
+  }
+
+  .headerSubtitle {
+    font-size: 1.125rem;
+  }
+
+  .timelineContainer {
+    padding-left: 32px;
+  }
+
+  .timelineLine {
+    left: 16px;
+  }
+
+  .achievementItem {
+    flex-direction: row;
+    gap: 16px;
+    padding-bottom: 32px;
+    align-items: flex-start;
+  }
+
+  .timelineDot {
+    position: absolute;
+    left: -40px;
+    top: 0;
+    margin-left: 0;
+  }
+
+  .contentCard {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .iconContainer {
+    width: 40px;
+    height: 40px;
+  }
+
+  .icon {
+    font-size: 1rem;
+  }
+
+  .logoContainer {
+    width: 70px; /* Adjusted for smaller screens */
+    height: 70px; /* Adjusted for smaller screens */
+    top: 16px;
+    right: 16px;
+    border-radius: 12px; /* Slightly smaller border-radius */
+  }
+
+  .institutionLogo {
+    border-radius: 12px; /* Match logoContainer */
+  }
+
+  .cornerAccent {
+    right: 80px; /* Adjusted for larger logoContainer */
+  }
+}
+
+@media (max-width: 480px) {
+  .achievementsSection {
+    padding: 40px 0;
+  }
+
+  .headerTitle {
+    font-size: 1.75rem;
+  }
+
+  .headerSubtitle {
+    font-size: 1rem;
+  }
+
+  .timelineContainer {
+    padding-left: 28px;
+  }
+
+  .timelineLine {
+    left: 14px;
+  }
+
+  .timelineDot {
+    left: -36px;
+  }
+
+  .contentCard {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .point {
+    font-size: 0.9rem;
+  }
+
+  .logoContainer {
+    width: 60px; /* Adjusted for smaller screens */
+    height: 60px; /* Adjusted for smaller screens */
+    border-radius: 10px; /* Slightly smaller border-radius */
+  }
+
+  .institutionLogo {
+    border-radius: 10px; /* Match logoContainer */
+  }
+
+  .cornerAccent {
+    right: 70px; /* Adjusted for larger logoContainer */
+  }
+}
+
+@media (max-width: 360px) {
+  .timelineContainer {
+    padding-left: 24px;
+  }
+
+  .timelineLine {
+    left: 12px;
+  }
+
+  .timelineDot {
+    left: -32px;
+  }
+
+  .contentCard {
+    padding: 12px;
+  }
+
+  .logoContainer {
+    width: 50px; /* Adjusted for very small screens */
+    height: 50px; /* Adjusted for very small screens */
+    border-radius: 8px; /* Slightly smaller border-radius */
+  }
+
+  .institutionLogo {
+    border-radius: 8px; /* Match logoContainer */
+  }
+
+  .cornerAccent {
+    right: 60px; /* Adjusted for larger logoContainer */
+  }
+}

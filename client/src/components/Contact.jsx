@@ -1,132 +1,113 @@
-import React from 'react';
+import { useState } from 'react';
+import { FiSend, FiUser, FiMail, FiGlobe, FiMessageSquare } from 'react-icons/fi';
 import styles from './Contact.module.css';
-import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from 'react-icons/fa'; // Icons for contact and social media
+import contactImage from '../assets/aboutimg.jpg';
 
 const Contact = () => {
-  const socialLinks = [
-    {
-      name: 'LinkedIn',
-      href: 'https://linkedin.com/in/yourusername',
-      icon: <FaLinkedin size={24} />,
-    },
-    {
-      name: 'GitHub',
-      href: 'https://github.com/yourusername',
-      icon: <FaGithub size={24} />,
-    },
-    {
-      name: 'X',
-      href: 'https://x.com/yourusername',
-      icon: <FaTwitter size={24} />,
-    },
-  ];
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    website: '',
+    message: ''
+  });
+
+  const handleChange = (e) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    // Add form submission logic here
+  };
 
   return (
-    <section id="contact" className={styles.contact}>
-      <div className={styles.contactContainer}>
-        <h2 className={styles.title}>Get in Touch</h2>
-        <div className={styles.contactContent}>
-          {/* Contact Form */}
-          <div className={styles.formSection}>
-            <h3 className={styles.sectionTitle}>Send a Message</h3>
-            <form className={styles.contactForm}>
-              <div className={styles.formGroup}>
-                <label htmlFor="name" className={styles.formLabel}>
-                  Name
-                </label>
+    <section id="contact" className={styles.contactSection}>
+      <div className={styles.container}>
+        <div className={styles.content}>
+          <div className={styles.header}>
+            <h2 className={styles.title}>Get in touch</h2>
+            <div className={styles.underline}></div>
+            <p className={styles.subtitle}>
+              Have a project in mind or want to collaborate? Drop me a message!
+            </p>
+          </div>
+          
+          <form onSubmit={handleSubmit} className={styles.contactForm}>
+            <div className={styles.formGroup}>
+              <div className={styles.inputContainer}>
+                <FiUser className={styles.inputIcon} />
                 <input
                   type="text"
                   id="name"
-                  name="name"
-                  className={styles.formInput}
-                  placeholder="Your Name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  placeholder="What's your good name?"
                   required
                 />
+                <div className={styles.focusBorder}></div>
               </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="email" className={styles.formLabel}>
-                  Email
-                </label>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <div className={styles.inputContainer}>
+                <FiMail className={styles.inputIcon} />
                 <input
                   type="email"
                   id="email"
-                  name="email"
-                  className={styles.formInput}
-                  placeholder="Your Email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  placeholder="Where can I reach you?"
                   required
                 />
+                <div className={styles.focusBorder}></div>
               </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="message" className={styles.formLabel}>
-                  Message
-                </label>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <div className={styles.inputContainer}>
+                <FiGlobe className={styles.inputIcon} />
+                <input
+                  type="url"
+                  id="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  placeholder="What's your web address?"
+                />
+                <div className={styles.focusBorder}></div>
+              </div>
+            </div>
+            
+            <div className={styles.formGroup}>
+              <div className={styles.textareaContainer}>
+                <FiMessageSquare className={styles.textareaIcon} />
                 <textarea
                   id="message"
-                  name="message"
-                  className={styles.formTextarea}
-                  placeholder="Your Message"
                   rows="5"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="What you want to say?"
                   required
                 ></textarea>
+                <div className={styles.focusBorder}></div>
               </div>
-              <button type="submit" className={styles.submitButton}>
-                Send Message
-              </button>
-            </form>
-          </div>
-
-          {/* Contact Details */}
-          <div className={styles.detailsSection}>
-            <h3 className={styles.sectionTitle}>Contact Details</h3>
-            <ul className={styles.contactList}>
-              <li className={styles.contactItem}>
-                <FaEnvelope className={styles.contactIcon} />
-                <a
-                  href="mailto:your.email@example.com"
-                  className={styles.contactLink}
-                >
-                  your.email@example.com
-                </a>
-              </li>
-              <li className={styles.contactItem}>
-                <FaLinkedin className={styles.contactIcon} />
-                <a
-                  href="https://linkedin.com/in/yourusername"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.contactLink}
-                >
-                  /yourusername
-                </a>
-              </li>
-              <li className={styles.contactItem}>
-                <FaGithub className={styles.contactIcon} />
-                <a
-                  href="https://github.com/yourusername"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.contactLink}
-                >
-                  /yourusername
-                </a>
-              </li>
-            </ul>
-            <h3 className={styles.sectionTitle}>Follow Me</h3>
-            <div className={styles.socialLinks}>
-              {socialLinks.map((social, index) => (
-                <a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={styles.socialIcon}
-                  title={social.name}
-                >
-                  {social.icon}
-                </a>
-              ))}
             </div>
-          </div>
+            
+            <button type="submit" className={styles.submitButton}>
+              <FiSend className={styles.buttonIcon} />
+              Send Message
+            </button>
+          </form>
+        </div>
+        
+        <div className={styles.imageContainer}>
+          <img 
+            src={contactImage} 
+            alt="Contact me" 
+            className={styles.contactImage} 
+          />
+          <div className={styles.imageOverlay}></div>
         </div>
       </div>
     </section>

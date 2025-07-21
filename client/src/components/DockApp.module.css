@@ -1,0 +1,105 @@
+/* Hide dock on desktop */
+@media (min-width: 768px) {
+  .dockWrapper {
+    display: none;
+  }
+}
+
+.dockWrapper {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding-bottom: 10px;
+}
+
+.dockContainer {
+  display: flex;
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  border-radius: 24px;
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.1),
+    0 1px 3px rgba(0, 0, 0, 0.05);
+  gap: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.dockItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  position: relative;
+}
+
+.iconContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.iconBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  color: #555;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.dockItem:hover .iconBackground {
+  transform: translateY(-6px) scale(1.15);
+  color: #000;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.dockItem.active .iconBackground {
+  background: #007bff;
+  color: white;
+  transform: translateY(-4px);
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.tooltip {
+  position: absolute;
+  bottom: -28px;
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.dockItem:hover .tooltip {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Bounce animation for active item */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.dockItem.active .iconBackground {
+  animation: bounce 0.5s ease;
+}
+
+/* Adjacent item effects */
+.dockItem:hover ~ .dockItem .iconBackground,
+.dockItem ~ .dockItem:hover .iconBackground {
+  transform: translateY(-3px) scale(1.05);
+}

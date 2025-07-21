@@ -1,63 +1,112 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { FiDownload } from 'react-icons/fi';
 import styles from './Navbar.module.css';
-import { FaBars, FaTimes } from 'react-icons/fa'; // For hamburger and close icons
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [activeItem, setActiveItem] = useState('home');
+  const [isSticky, setIsSticky] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const handleClick = (item) => {
+    setActiveItem(item);
+    setIsMobileMenuOpen(false);
   };
 
-  const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Contact', href: '#contact' },
-  ];
+  const handleScroll = () => {
+    setIsSticky(window.scrollY > 100);
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <nav className={styles.navbar}>
-      <div className={styles.navContainer}>
-        {/* Logo */}
-        <div className={styles.logo}>
-          <a href="#home">Portfolio</a>
+    <>
+      <nav className={`${styles.navbar} ${isSticky ? styles.sticky : ''}`}>
+        {/* Left side - Profile (visible when sticky) */}
+        <div className={`${styles.profileContainer} ${isSticky ? styles.visible : ''}`}>
+          <img 
+            src="https://avatars.githubusercontent.com/u/151711988?v=4" 
+            alt="Profile" 
+            className={styles.profileImage}
+          />
+          <span className={styles.profileName}>Thamil Arasan</span>
         </div>
 
-        {/* Desktop Menu */}
-        <ul className={styles.navLinks}>
-          {navLinks.map((link) => (
-            <li key={link.name}>
-              <a href={link.href} className={styles.navLink}>
-                {link.name}
-              </a>
-            </li>
-          ))}
-        </ul>
-
-        {/* Hamburger Icon for Mobile */}
-        <div className={styles.hamburger} onClick={toggleMenu}>
-          {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      <ul className={`${styles.mobileMenu} ${isOpen ? styles.active : ''}`}>
-        {navLinks.map((link) => (
-          <li key={link.name}>
+        {/* Center - Navigation Menu */}
+        <ul className={`${styles.navbarMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          <li>
             <a
-              href={link.href}
-              className={styles.mobileLink}
-              onClick={toggleMenu}
+              href="#home"
+              className={activeItem === 'home' ? styles.active : ''}
+              onClick={() => handleClick('home')}
             >
-              {link.name}
+              Home
             </a>
           </li>
-        ))}
-      </ul>
-    </nav>
+          <li>
+            <a
+              href="#about"
+              className={activeItem === 'about' ? styles.active : ''}
+              onClick={() => handleClick('about')}
+            >
+              About
+            </a>
+          </li>
+          <li>
+            <a
+              href="#stack"
+              className={activeItem === 'stack' ? styles.active : ''}
+              onClick={() => handleClick('stack')}
+            >
+              Stack
+            </a>
+          </li>
+          <li>
+            <a
+              href="#projects"
+              className={activeItem === 'projects' ? styles.active : ''}
+              onClick={() => handleClick('projects')}
+            >
+              Projects
+            </a>
+          </li>
+          <li>
+            <a
+              href="#contact"
+              className={activeItem === 'contact' ? styles.active : ''}
+              onClick={() => handleClick('contact')}
+            >
+              Contact
+            </a>
+          </li>
+        </ul>
+
+        {/* Right side - Resume Button (visible when sticky) */}
+        <div className={`${styles.resumeContainer} ${isSticky ? styles.visible : ''}`}>
+          <a 
+            href="/resume.pdf" 
+            download 
+            className={styles.resumeButton}
+          >
+            <FiDownload className={styles.downloadIcon} />
+            Resume
+          </a>
+        </div>
+
+        {/* Mobile menu button */}
+        <button 
+          className={styles.mobileMenuButton}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle menu"
+        >
+          <span className={isMobileMenuOpen ? styles.open : ''}></span>
+          <span className={isMobileMenuOpen ? styles.open : ''}></span>
+          <span className={isMobileMenuOpen ? styles.open : ''}></span>
+        </button>
+      </nav>
+    </>
   );
 };
 

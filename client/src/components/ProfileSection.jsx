@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './ProfileSection.module.css';
 import Myprofile from '../assets/Myprofile.png';
+
 function ProfileSection() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -51,6 +52,12 @@ function ProfileSection() {
       {/* Animated gradient background */}
       <div className={styles.animatedBg}></div>
       
+      {/* Background name text */}
+      <div className={styles.backgroundName}>THAMILARASAN</div>
+      
+      {/* Tagline above the background name */}
+      <div className={styles.tagline}>Building Digital Experiences</div>
+
       {/* Floating tech bubbles */}
       <div className={styles.bubbles}>
         {[...Array(15)].map((_, i) => (
@@ -79,7 +86,7 @@ function ProfileSection() {
         <div className={styles.profileWrapper}>
           <div className={styles.halo}></div>
           <img
-            src={Myprofile} className={`${styles.profileImage} ${isScrolled ? styles.scrolled : ''}`}
+            src={ Myprofile}  className={`${styles.profileImage} ${isScrolled ? styles.scrolled : ''}`}
             alt="Thamil Arasan"
           />
           <div className={styles.glowingOrb}></div>
