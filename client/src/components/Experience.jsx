@@ -5,37 +5,39 @@ const Experience = () => {
   const experienceData = [
     {
       type: 'experience',
-      title: 'MERN Stack Internship',
+      title: 'Full Stack Internship',
       company: 'Better Tomorrow',
-      date: 'Jan 2024',
+      date: 'Jan 2025 – Mar 2025',
       location: 'Remote',
       description: [
-        'Completed a full-stack MERN project titled BookHive, a dynamic online platform for managing and exploring books.',
-        'Implemented features such as user authentication, book listings, reviews, and responsive UI to enhance user interaction and accessibility.'
+        'Led development of "BidBetter", a real-time bidding web app using Socket.IO.',
+        'Integrated live bid tracking, deployed frontend on Vercel & backend on Render.',
+        'Managed full-stack MERN-based development and team coordination.'
       ],
-      skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST API'],
+      skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'REST API'],
       position: 'left'
     }
+    
   ];
 
   const educationData = [
     {
       type: 'education',
       title: 'B.Tech (Information Technology)',
-      institution: 'University',
-      date: '2023-2027',
-      grade: '8.30 CGPA',
-      description: 'Currently pursuing Bachelor of Technology in Information Technology with focus on software development, data structures, algorithms, and modern web technologies.',
+      institution: 'Sri Eshwar College of Engineering',
+      date: '2023 – 2027',
+      grade: '8.3 CGPA',
+      description: 'Focused on software development, DSA, system design, and full-stack web/mobile technologies.',
       skills: [],
       position: 'right'
     },
     {
       type: 'education',
-      title: 'HSC (Higher Secondary Certificate)',
-      institution: 'School',
-      date: '2022-2023',
-      grade: '88.3%',
-      description: 'Completed higher secondary education with distinction in Mathematics, Physics, Chemistry, and Biology',
+      title: 'HSC – Higher Secondary Certificate',
+      institution: 'Sree Saravana Niketan MHSS',
+      date: '2022 – 2023',
+      grade: '88.6%',
+      description: 'Excelled in Physics, Chemistry, Mathematics, and Biology.',
       skills: [],
       position: 'right'
     }
@@ -57,7 +59,6 @@ const Experience = () => {
     }
   ];
 
-  // Combine in the order: Experience → Education → Projects
   const allItems = [...experienceData, ...educationData, ...projectData];
 
   const getTypeIcon = (type) => {
@@ -90,12 +91,12 @@ const Experience = () => {
     <div className={styles.experience}>
       <div className={styles.header}>
         <h1 className={styles.title}>Experience & Education</h1>
-        <p className={styles.subtitle}>My professional journey and academic background</p>
+        <p className={styles.subtitle}>My professional journey, projects, and academic background</p>
       </div>
 
       <div className={styles.timelineContainer}>
         <div className={styles.timelineLine}></div>
-        
+
         {allItems.map((item, index) => (
           <div 
             key={index} 
@@ -119,13 +120,8 @@ const Experience = () => {
                 </span>
               </div>
               
-              {item.company && (
-                <p className={styles.company}>{item.company}</p>
-              )}
-              
-              {item.institution && (
-                <p className={styles.company}>{item.institution}</p>
-              )}
+              {item.company && <p className={styles.company}>{item.company}</p>}
+              {item.institution && <p className={styles.company}>{item.institution}</p>}
               
               <div className={styles.details}>
                 <span className={styles.date}>{item.date}</span>

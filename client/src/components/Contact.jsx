@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { FiSend, FiUser, FiMail, FiGlobe, FiMessageSquare } from 'react-icons/fi';
 import styles from './Contact.module.css';
-import contactImage from '../assets/aboutimg.jpg';
+import contactImage from '../assets/Myprofile.png';
 
 const Contact = () => {
   const [formData, setFormData] = useState({

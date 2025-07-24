@@ -1,40 +1,57 @@
 .container {
-  max-width: 1100px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 1rem;
-  background: #fafbfc;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px 0 rgba(0,0,0,0.07);
+  padding: 3rem 1.5rem;
 }
 
-.headingWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 2.5rem;
-  position: relative;
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
 }
 
-.heading {
-  font-size: 2.1rem;
+.title {
+  font-size: 2.5rem;
   font-weight: 700;
-  color: #1a2236;
-  letter-spacing: 0.5px;
-  margin-bottom: 0.25rem;
+  color: #2d3748;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-.headingUnderline {
-  height: 6px;
-  width: 185px;
-  border-radius: 3px;
-  background: #263159;
-  margin-top: 0;
+.subtitle {
+  font-size: 1.1rem;
+  color: #4a5568;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .platformsGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
+}
+
+.platformLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.platformCard {
+  background: white;
+  border-radius: 16px;
+  padding: 1.8rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+  z-index: 1;
 }
 
 .platformCard {
@@ -77,127 +94,76 @@
   box-shadow: 0 0 0 3px rgba(38, 49, 89, 0.07);
 }
 
-.platformImage {
-  display: block;
-  margin: 0 auto 0.65rem auto;
-  width: 44px;
-  height: 44px;
-  object-fit: contain;
-  border-radius: 9px;
-  background: #f8fafc;
-  box-shadow: 0 1px 6px rgba(38, 49, 89, 0.07);
-}
 
-.platformCard h3 {
-  font-size: 1.14rem;
-  font-weight: 600;
-  color: #263159;
-  margin-bottom: 0.4rem;
-  transition: color 0.2s;
-  text-align: center;
-}
-
-.platformCard p {
-  font-size: 0.98rem;
-  color: #4a5568;
-  margin: 0.21rem 0;
-  transition: color 0.2s;
-  text-align: center;
-}
-
-.platformCard.hovered h3 {
-  color: #263159;
-}
-
-.platformCard.hovered p {
-  color: #1a2236;
-}
-
-.rating, .rank {
-  font-weight: 600;
-  color: #1a2236;
-  margin-top: 0.19rem;
-}
-
-.badges {
+.platformLogo {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1.5rem;
   display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin: 0.7rem 0 0.1rem 0;
+  align-items: center;
   justify-content: center;
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.badges span {
-  font-size: 0.89rem;
+.platformLogo img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.platformInfo {
+  text-align: center;
+}
+
+.platformInfo h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 0.75rem;
+}
+
+.details {
+  font-size: 1rem;
+  color: #4a5568;
+  margin-bottom: 0.5rem;
+}
+
+.rating {
+  font-size: 0.9rem;
+  color: #3b82f6;
   font-weight: 500;
-  padding: 0.18rem 0.55rem;
-  background: #f5f7fa;
-  border-radius: 4px;
-  color: #263159;
-  border: 1.2px solid #e6e8f3;
-  transition: all 0.18s;
+  margin-top: 0.5rem;
 }
 
-.platformCard.hovered .badges span {
-  background: #e6e8f3;
-  color: #263159;
-  border-color: #263159;
-  transform: translateY(-1px) scale(1.05);
-}
-
-@media (max-width: 1100px) {
+@media (max-width: 768px) {
   .container {
-    padding: 1rem 0.5rem;
+    padding: 2rem 1rem;
   }
+  
+  .title {
+    font-size: 2rem;
+  }
+  
   .platformsGrid {
-    gap: 1.1rem;
-  }
-  .platformCard {
-    padding: 1.1rem 0.8rem;
-  }
-  .heading {
-    font-size: 1.6rem;
-  }
-  .headingUnderline {
-    width: 110px;
-    height: 4px;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
   }
 }
 
-@media (max-width: 900px) {
-  .platformsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .container {
-    padding: 1rem 0.2rem;
-  }
+@media (max-width: 480px) {
   .platformsGrid {
     grid-template-columns: 1fr;
-    gap: 0.7rem;
   }
+  
   .platformCard {
-    padding: 0.85rem 0.6rem;
-    border-radius: 10px;
+    padding: 1.5rem;
   }
-  .platformImage {
-    width: 34px;
-    height: 34px;
-  }
-  .heading {
-    font-size: 1.07rem;
-  }
-  .headingUnderline {
-    width: 60px;
-    height: 3px;
-  }
-}
-
-/* Remove scale effect on card for touch/mobile devices for better UX */
-@media (hover: none) {
-  .platformCard.hovered {
-    transform: none;
+  
+  .platformLogo {
+    width: 56px;
+    height: 56px;
   }
 }

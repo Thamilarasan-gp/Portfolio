@@ -1,4 +1,3 @@
-
 import styles from './Footer.module.css';
 import { FaUser, FaLaptopCode, FaBriefcase, FaFolder, FaTrophy, FaEnvelope } from 'react-icons/fa';
 import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from 'react-icons/fi';
@@ -45,13 +44,28 @@ const Footer = () => (
       <div className={styles.connectSection}>
         <div className={styles.linksTitle}>Connect</div>
         <div className={styles.socialIcons}>
-          <a href="#" aria-label="GitHub">
+          <a 
+            href="https://github.com/thamilarasan-gp" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="GitHub"
+          >
             <FiGithub size={24} />
           </a>
-          <a href="#" aria-label="LinkedIn">
+          <a 
+            href="https://www.linkedin.com/in/thamilarasangp" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="LinkedIn"
+          >
             <FiLinkedin size={24} />
           </a>
-          <a href="#" aria-label="Email">
+          <a 
+            href="mailto:thamilarasan.gp@sece.ac.in" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="Email"
+          >
             <FiMail size={24} />
           </a>
         </div>

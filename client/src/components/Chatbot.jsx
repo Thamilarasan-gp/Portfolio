@@ -1,122 +1,209 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import styles from './Chatbot.module.css';
-import robotIcon from '../assets/bot.png'; // You'll need to add a robot icon image
+import robotIcon from '../assets/bot.png';
 
 const Chatbot = () => {
   const [messages, setMessages] = useState([
-    { sender: 'bot', text: 'Hello! I’m Thamilarasan’s portfolio bot. I can tell you about his education, skills, and achievements. For example, he’s pursuing a B.Tech in DTT at Sri Eshwar College of Engineering with an 8.3 GPA. Ask me anything about his profile!' },
+    { sender: 'bot', text: 'Greetings! I’m Kitti 😺, Thamilarasan’s portfolio bot. Ask about his skills, projects, or accounts!' },
   ]);
   const [input, setInput] = useState('');
-  const [awaitingUserInput, setAwaitingUserInput] = useState(false);
-  const [pendingQuestion, setPendingQuestion] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+  const typingTimeoutRef = useRef(null);
 
-  // Predefined resume data
-  const resumeData = {
-    education: 'B.Tech in DTT, Sri Eshwar College of Engineering, 8.3 GPA',
-    skills: 'To be provided by Thamilarasan',
-    achievements: 'To be provided by Thamilarasan',
-    projects: 'To be provided by Thamilarasan',
-  };
+  useEffect(() => {
+    const generatedId = Math.random().toString(36).substring(2, 15);
+    setUserId(generatedId);
+  }, []);
 
-  const handleSendMessage = () => {
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, isLoading]);
+
+  const handleSendMessage = async () => {
     if (!input.trim()) return;
 
-    // Add user message to chat
-    setMessages([...messages, { sender: 'user', text: input }]);
-
-    // Process user input
-    let response = '';
-    const lowerInput = input.toLowerCase();
-
-    if (awaitingUserInput) {
-      response = `Thank you for the details! Here's what I now know about your ${pendingQuestion}: ${input}. Anything else to add or another question for me?`;
-      resumeData[pendingQuestion] = input;
-      setAwaitingUserInput(false);
-      setPendingQuestion('');
-    } else {
-      if (lowerInput.includes('education') || lowerInput.includes('college') || lowerInput.includes('gpa')) {
-        response = `Thamilarasan is pursuing a ${resumeData.education}. Want to know more about his skills or achievements?`;
-      } else if (lowerInput.includes('skills')) {
-        if (resumeData.skills === 'To be provided by Thamilarasan') {
-          response = `I don't have full details on Thamilarasan's skills yet. Could he provide more information about his skills?`;
-          setAwaitingUserInput(true);
-          setPendingQuestion('skills');
-        } else {
-          response = `Thamilarasan's skills include: ${resumeData.skills}. Anything else you'd like to know?`;
-        }
-      } else if (lowerInput.includes('achievements') || lowerInput.includes('accomplishments')) {
-        if (resumeData.achievements === 'To be provided by Thamilarasan') {
-          response = `I don't have full details on Thamilarasan's achievements yet. Could he provide more information about his achievements?`;
-          setAwaitingUserInput(true);
-          setPendingQuestion('achievements');
-        } else {
-          response = `Thamilarasan's achievements include: ${resumeData.achievements}. Anything else you'd like to know?`;
-        }
-      } else if (lowerInput.includes('projects')) {
-        if (resumeData.projects === 'To be provided by Thamilarasan') {
-          response = `I don't have full details on Thamilarasan's projects yet. Could he provide more information about his projects?`;
-          setAwaitingUserInput(true);
-          setPendingQuestion('projects');
-        } else {
-          response = `Thamilarasan's projects include: ${resumeData.projects}. Anything else you'd like to know?`;
-        }
-      } else {
-        response = `I'm not sure about that. Could you ask about Thamilarasan's education, skills, achievements, or projects? Or, I can ask him for more details if needed!`;
-      }
-    }
-
-    setMessages((prev) => [...prev, { sender: 'bot', text: response }]);
+    const userMessage = { sender: 'user', text: input };
+    setMessages((prev) => [...prev, userMessage]);
     setInput('');
+    setIsLoading(true);
+
+    try {
+      const response = await fetch('http://localhost:5000/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: input, userId }),
+      });
+
+      if (!response.ok) throw new Error('Network error');
+      const data = await response.json();
+      setMessages((prev) => [...prev, { sender: 'bot', text: data.response }]);
+    } catch (error) {
+      setMessages((prev) => [...prev, { sender: 'bot', text: 'Kitti 😺 hit an error. Try again!' }]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  // Debounce input to prevent rapid API calls
+  const handleInputChange = (e) => {
+    setInput(e.target.value);
+    if (typingTimeoutRef.current) clearTimeout(typingTimeoutRef.current);
+    typingTimeoutRef.current = setTimeout(() => {
+      if (e.target.value.trim() && e.key === 'Enter') handleSendMessage();
+    }, 300);
   };
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
 
+  const TypingIndicator = () => (
+    <motion.div 
+      className={styles.typingIndicator}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.4 }}
+    >
+      {[...Array(3)].map((_, i) => (
+        <motion.span
+          key={i}
+          animate={{ y: [0, -4, 0] }}
+          transition={{ 
+            repeat: Infinity,
+            duration: 1.2,
+            ease: "easeInOut",
+            delay: i * 0.2
+          }}
+        />
+      ))}
+    </motion.div>
+  );
+
   return (
     <div className={styles.container}>
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          className={styles.chatWindow}
-        >
-          <div className={styles.chatHeader}>
-            Thamilarasan's Portfolio Chatbot
-          </div>
-          <div className={styles.messagesContainer}>
-            {messages.map((msg, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: msg.sender === 'user' ? 20 : -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className={msg.sender === 'user' ? styles.userMessage : styles.botMessage}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ 
+              type: 'spring',
+              damping: 20,
+              stiffness: 300,
+              mass: 0.5
+            }}
+            className={styles.chatWindow}
+          >
+            <div className={styles.chatHeader}>
+              <div className={styles.headerContent}>
+                <img src={robotIcon} alt="Chatbot" className={styles.headerIcon} />
+                <span>Kitti - Portfolio Bot</span>
+              </div>
+              <motion.button 
+                onClick={toggleChat} 
+                className={styles.closeButton}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+                transition={{ duration: 0.2 }}
               >
-                {msg.text}
-              </motion.div>
-            ))}
-          </div>
-          <div className={styles.inputContainer}>
-            <input
-              type="text"
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
-              className={styles.inputField}
-              placeholder={awaitingUserInput ? 'Please provide details...' : 'Ask about Thamilarasan...'}
-            />
-            <button onClick={handleSendMessage} className={styles.sendButton}>
-              Send
-            </button>
-          </div>
-        </motion.div>
-      )}
-      <div className={styles.robotIcon} onClick={toggleChat}>
+                ×
+              </motion.button>
+            </div>
+            <div className={styles.messagesContainer}>
+              {messages.map((msg, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: msg.sender === 'user' ? 10 : -10 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { delay: 0.1 }
+                  }}
+                  transition={{ duration: 0.3, ease: "easeOut" }}
+                  className={`${styles.message} ${msg.sender === 'user' ? styles.userMessage : styles.botMessage}`}
+                >
+                  {msg.text}
+                </motion.div>
+              ))}
+              {isLoading && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className={`${styles.message} ${styles.botMessage} ${styles.typingContainer}`}
+                >
+                  <TypingIndicator />
+                </motion.div>
+              )}
+              <div ref={messagesEndRef} />
+            </div>
+            <motion.div 
+              className={styles.inputContainer}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
+            >
+              <input
+                type="text"
+                value={input}
+                onChange={handleInputChange}
+                onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                className={styles.inputField}
+                placeholder="Ask Kitti 😺 about Me..."
+                disabled={isLoading}
+              />
+              <motion.button 
+                onClick={handleSendMessage} 
+                className={styles.sendButton} 
+                disabled={isLoading}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                  <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                </svg>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <motion.div 
+        className={styles.robotIcon} 
+        onClick={toggleChat}
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.9 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+        animate={{
+          rotate: isOpen ? [0, 15, -15, 0] : 0,
+          y: isOpen ? [0, -8, 0] : 0
+        }}
+        transition={{
+          duration: 0.6,
+          times: isOpen ? [0, 0.2, 0.4, 0.6] : undefined
+        }}
+      >
         <img src={robotIcon} alt="Chatbot" />
-      </div>
+        {!isOpen && (
+          <motion.div 
+            className={styles.notificationDot}
+            initial={{ scale: 0 }}
+            animate={{ scale: [0, 1.2, 1] }}
+            transition={{ 
+              repeat: 3,
+              repeatType: "reverse",
+              duration: 0.8,
+              ease: "easeInOut"
+            }}
+          />
+        )}
+      </motion.div>
     </div>
   );
 };
