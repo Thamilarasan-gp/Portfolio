@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Experience.module.css';
-
+import { FaBriefcase, FaRocket, FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa';
 const Experience = () => {
   const experienceData = [
     {
@@ -61,27 +61,29 @@ const Experience = () => {
 
   const allItems = [...experienceData, ...educationData, ...projectData];
 
-  const getTypeIcon = (type) => {
-    switch (type) {
-      case 'experience':
-        return '💼';
-      case 'project':
-        return '🚀';
-      case 'education':
-        return '🎓';
-      default:
-        return '📍';
-    }
-  };
+const getTypeIcon = (type) => {
+  const iconStyle = { color: 'white' }; // White color style
+  
+  switch (type) {
+    case 'experience':
+      return <FaBriefcase style={iconStyle} />;
+    case 'project':
+      return <FaRocket style={iconStyle} />;
+    case 'education':
+      return <FaGraduationCap style={iconStyle} />;
+    default:
+      return <FaMapMarkerAlt style={iconStyle} />;
+  }
+};
 
   const getTypeColor = (type) => {
     switch (type) {
       case 'experience':
-        return '#2563eb';
+        return '#3a65c2ff';
       case 'project':
-        return '#dc2626';
+        return '#bd3e3eff';
       case 'education':
-        return '#16a34a';
+        return '#339657ff';
       default:
         return '#6b7280';
     }

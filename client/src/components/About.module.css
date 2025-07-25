@@ -51,8 +51,9 @@
 
 .profileImage {
     width: 100%;
-    height: auto;
+    height: 350px;
     display: block;
+    margin-top: 15px;
     border-radius: 20px;
     position: relative;
     z-index: 2;

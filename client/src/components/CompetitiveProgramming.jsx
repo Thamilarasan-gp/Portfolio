@@ -8,15 +8,15 @@ const platformLinks = [
     alt: "LeetCode logo",
     title: "LeetCode",
     details: "200+ problems solved",
-    rating: "Contest Rating: 1,608"
+    rating: "Contest Rating: 1,414"
   },
   {
     href: "https://www.skillrack.com/faces/resume.xhtml?id=484668&key=262cac8aa817e03417f620f487c0e526d5a868cf",
     src: "https://yt3.ggpht.com/a-/AN66SAz5hy2hxiCCoJWb1xjAgJLlkJmGqkwP_hGv4g=s900-mo-c-c0xffffffff-rj-k-no",
     alt: "SkillRack logo",
     title: "SkillRack",
-    details: "950+ problems solved",
-    rating: "Rank: 23,915"
+    details: "550+ problems solved",
+    rating: "Rank: 27,915"
   },
   {
     href: "https://www.codechef.com/users/thamilarasangp",

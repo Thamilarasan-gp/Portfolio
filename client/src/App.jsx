@@ -16,9 +16,13 @@ import Projects from './components/Projects';
 import Skills from './components/Skills';
 import SkillsBlock from './components/SkillsBlock';
 import TechStack from './components/TechStack';
+import SplashCursor from './components/SplashCursor'
+
+
 function App() {
   return (
     <div className="portfolio">
+      <SplashCursor />
    <Navbar/>
  <Hero/>
    <About/>

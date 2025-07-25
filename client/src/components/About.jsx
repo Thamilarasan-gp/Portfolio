@@ -28,7 +28,7 @@ const About = () => {
             <div className={styles.aboutContainer}>
                 <div className={styles.aboutImage}>
                     <div className={styles.imageWrapper}>
-                        <img src={img1} alt="Profile" className={styles.profileImage} />
+                        <img src="https://gifdb.com/images/high/animated-chock-coding-c78f6elj32sfoi8q.gif" alt="Profile" className={styles.profileImage} />
                         <div className={styles.imageBorder}></div>
                         <div className={styles.imageGlow}></div>
                     </div>

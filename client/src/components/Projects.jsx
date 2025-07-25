@@ -15,7 +15,7 @@ const Projects = () => {
         "A location-based web app that lets users discover, share, and rate nearby local spots like restaurants, hangouts, and landmarks. Integrated Google Maps API, real-time updates, and user-generated content. Built as part of a hackathon hosted by Better Tomorrow and recognized for design & functionality. Features a responsive UI and RESTful API integration for CRUD operations.",
       techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Google Maps API"],
       tags: ["#react", "#nodejs", "#googlemaps", "#expressjs", "#mongodb"],
-      image: project1Image,
+      image: "https://img.freepik.com/premium-photo/smart-parking-system-with-sensors-guiding-drivers-available-parking-spaces_1327465-51174.jpg",
       githubLink: "https://github.com/Thamilarasan-gp/Nammaspot_frontend", // update with actual link
       liveDemo: "https://namma-spot.vercel.app/" // update with live URL
     },
@@ -25,7 +25,7 @@ const Projects = () => {
         "A real-time digital ticketing system for public transport featuring QR payments, seat tracking, GPS-based live location, and smart alerts. Developed in a 24-hour hackathon, secured runner-up. Payment system powered by Razorpay. Socket.IO enabled real-time updates for seat availability and bus tracking. Optimized UI for mobile-first experience using React Native (Expo).",
       techStack: ["React Native", "Node.js", "Express.js", "MongoDB", "Socket.IO", "Razorpay", "Google Maps API"],
       tags: ["#reactnative", "#socketio", "#razorpay", "#gps", "#mongo"],
-      image: project2Image,
+      image: "https://img.freepik.com/premium-photo/explore-daily-routines-interactions-public-transit-bus-driver-navigating-city-routes_1112342-11594.jpg",
       githubLink: "https://github.com/majhus001/Busmate-2", // update with actual link
       liveDemo: "https://expo.dev/accounts/majid10/projects/admin/builds/your-admin-build-id" // update with live demo
     },
@@ -35,7 +35,7 @@ const Projects = () => {
         "A MERN Stack-based real-time auction platform developed during internship at Better Tomorrow. Used Socket.IO for live bidding updates, Vercel for frontend deployment, Render for backend. Features include live auction boards, admin/user dashboards, and responsive layout. Showcased ability to handle full-stack delivery and live systems.",
       techStack: ["React.js", "Node.js", "Express.js", "MongoDB", "Socket.IO", "Vercel", "Render"],
       tags: ["#socketio", "#real-time", "#react", "#fullstack", "#mongodb"],
-      image: project3Image,
+      image: "https://img.freepik.com/premium-photo/auction-fever-how-capture-excitement-tension-auction-with-photography_1057087-1739.jpg",
       githubLink: "https://github.com/Thamilarasan-gp/BidBetter_frontend", // update with actual link
       liveDemo: "https://bid-better-web.vercel.app" // update with actual link
     }
