@@ -386,3 +386,14 @@
   stroke: #6366f1;
   transform: scale(1.15);
 }
+
+@media (max-width: 480px) {
+
+  .copyright{
+    display: none;
+
+  }
+.backToTop{
+  margin-bottom: 80px;
+}
+}

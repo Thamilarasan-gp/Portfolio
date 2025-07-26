@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Experience.module.css';
 import { FaBriefcase, FaRocket, FaGraduationCap, FaMapMarkerAlt } from 'react-icons/fa';
+
 const Experience = () => {
   const experienceData = [
     {
@@ -17,7 +18,6 @@ const Experience = () => {
       skills: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'Socket.IO', 'REST API'],
       position: 'left'
     }
-    
   ];
 
   const educationData = [
@@ -61,29 +61,29 @@ const Experience = () => {
 
   const allItems = [...experienceData, ...educationData, ...projectData];
 
-const getTypeIcon = (type) => {
-  const iconStyle = { color: 'white' }; // White color style
-  
-  switch (type) {
-    case 'experience':
-      return <FaBriefcase style={iconStyle} />;
-    case 'project':
-      return <FaRocket style={iconStyle} />;
-    case 'education':
-      return <FaGraduationCap style={iconStyle} />;
-    default:
-      return <FaMapMarkerAlt style={iconStyle} />;
-  }
-};
+  const getTypeIcon = (type) => {
+    const iconStyle = { color: 'white' };
+    
+    switch (type) {
+      case 'experience':
+        return <FaBriefcase style={iconStyle} />;
+      case 'project':
+        return <FaRocket style={iconStyle} />;
+      case 'education':
+        return <FaGraduationCap style={iconStyle} />;
+      default:
+        return <FaMapMarkerAlt style={iconStyle} />;
+    }
+  };
 
   const getTypeColor = (type) => {
     switch (type) {
       case 'experience':
-        return '#3a65c2ff';
+        return '#3a65c2';
       case 'project':
-        return '#bd3e3eff';
+        return '#bd3e3e';
       case 'education':
-        return '#339657ff';
+        return '#339657';
       default:
         return '#6b7280';
     }
