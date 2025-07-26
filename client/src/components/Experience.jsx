@@ -81,7 +81,7 @@ const getTypeIcon = (type) => {
       case 'experience':
         return '#3a65c2ff';
       case 'project':
-        return '#bd3e3eff';
+        return '#723fbeff';
       case 'education':
         return '#339657ff';
       default:
