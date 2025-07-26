@@ -44,7 +44,11 @@
   top: 0;
   bottom: 0;
   width: 4px;
-  background: linear-gradient(to bottom, #2563eb 0%, #2563eb 33%, #16a34a 33%, #16a34a 66%, #dc2626 66%, #dc2626 100%);
+  background: linear-gradient(to bottom, #547aca 0%, #2563eb 33%, #3969d8 33%, #e367ff 66%, #d56767 66%, #b94343 100%);
+  box-shadow:
+    0 0 10px #2563eb,
+    0 0 20px #16a34a,
+    0 0 30px #dc2626;
   transform: translateX(-50%);
   border-radius: 2px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
