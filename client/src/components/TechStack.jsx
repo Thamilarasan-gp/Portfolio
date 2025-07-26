@@ -51,7 +51,7 @@ const techGroups = [
 ];
 
 const TechStack = () => (
-  <div id="stack"className={styles.container}>
+  <div id="stack" className={styles.container}>
     <h2 className={styles.title}>Tech Stack</h2>
     <div className={styles.techGroups}>
       {techGroups.map((group, groupIndex) => (

@@ -192,6 +192,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
 .imageContainer {
   width: 100%;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
@@ -266,6 +267,104 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
   box-shadow: 0 10px 25px rgba(0,0,0,0.1) !important;
 }
 
+/* Enhanced Phone Button Styles */
+.phoneButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin: 1.5rem 0;
+  width: 100%;
+}
+
+.phoneButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+  color: white;
+  padding: 0.9rem 1.8rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.phoneButtonHover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.35);
+}
+
+.phoneButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
+.phoneButton:hover::before {
+  opacity: 1;
+}
+
+.phoneIconWrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.phoneIcon {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+  z-index: 2;
+}
+
+.phoneButton:hover .phoneIcon {
+  transform: rotate(10deg) scale(1.1);
+  animation: ring 0.5s ease-in-out 0.1s;
+}
+
+.phoneRipple {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  animation: ripple 1.5s ease-out infinite;
+  z-index: 1;
+}
+
+@keyframes ring {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(5deg) scale(1.05); }
+  50% { transform: rotate(-5deg) scale(1.1); }
+  75% { transform: rotate(5deg) scale(1.05); }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
 /* Tablet and larger screens */
 @media (min-width: 768px) {
   .contactSection {
@@ -277,7 +376,6 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
     padding: 0 1.5rem;
     gap: 3rem;
     align-items: center;
-  
   }
   
   .content {
@@ -323,6 +421,11 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
     width: auto;
     padding: 1rem 2rem;
     border-radius: 8px;
+    margin-left: 50px;
+  }
+
+  .phoneButtonContainer {
+    margin: 2rem 0;
   }
 }
 
@@ -394,7 +497,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
     width: 100%;
     max-width: 280px;
     height: auto;
-    margin: 0 auto 1.5rem;
+    margin-right: 40px;
   }
   
   .content {
@@ -409,6 +512,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
   
   .title {
     font-size: 1.6rem;
+    margin-right: 30px;
   }
   
   .subtitle {
@@ -418,7 +522,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
   
   .contactForm {
     width: 250px;
-   margin-right: 140px;
+    margin-right: 130px;
   }
   
   input, textarea {
@@ -435,5 +539,14 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
     padding: 0.8rem 1.5rem;
     font-size: 0.9rem;
     margin-left: 25px;
+  }
+
+  .phoneButton {
+    padding: 0.7rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .phoneButtonContainer {
+    margin: 1rem 0;
   }
 }

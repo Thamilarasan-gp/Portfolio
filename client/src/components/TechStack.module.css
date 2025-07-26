@@ -1,17 +1,16 @@
 .container {
   max-width: 1100px;
   margin: 0 auto;
-  padding: 2.5rem 1rem;
+  padding: 2rem 1rem;
   font-family: 'Inter', sans-serif;
-  
 }
 
 .title {
   text-align: center;
-  font-size: 2.2rem;
+  font-size: 2rem;
   color: #18181b;
   font-weight: 700;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
   position: relative;
   letter-spacing: 0.5px;
 }
@@ -28,15 +27,15 @@
 
 .techGroups {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
 .techGroup {
   background: #fff;
   border: 1px solid #ececec;
-  border-radius: 16px;
-  padding: 2.2rem 1.4rem;
+  border-radius: 14px;
+  padding: 1.8rem 1.2rem;
   box-shadow: 0 1px 10px rgba(60,60,60,0.06);
   transition: border-color 0.18s, box-shadow 0.18s;
   min-width: 0;
@@ -47,52 +46,49 @@
   box-shadow: 0 4px 20px 0 rgba(99,102,241,0.09);
 }
 
-/* Make Data & Concepts card wider */
 .wideGroup {
   grid-column: span 2;
 }
 
 .groupTitle {
-  font-size: 1.12rem;
-  margin-bottom: 1.1rem;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
   color: #6366f1;
   font-weight: 600;
   text-align: left;
-  letter-spacing: 1px;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  border: none;
-  padding-bottom: 0;
 }
 
 .combinedSections {
   display: flex;
-  gap: 2.5rem;
+  gap: 1.5rem;
   justify-content: space-between;
   flex-wrap: wrap;
 }
 
 .section {
   flex: 1 1 0;
-  min-width: 160px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 }
 
 .sectionTitle {
-  font-size: 0.93rem;
+  font-size: 0.9rem;
   color: #71717a;
   font-weight: 600;
   text-align: left;
   margin-bottom: 0.2rem;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.3px;
   text-transform: uppercase;
 }
 
 .techItems {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-  gap: 1.1rem;
+  gap: 1rem;
   justify-items: center;
 }
 
@@ -100,74 +96,141 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0.9rem 0.3rem;
-  border-radius: 11px;
+  padding: 0.8rem 0.3rem;
+  border-radius: 10px;
   background: #f9fafb;
-  border: 1.2px solid #f1f5f9;
-  transition:
-    background 0.18s,
-    box-shadow 0.18s,
-    transform 0.16s,
-    border-color 0.18s;
+  border: 1px solid #f1f5f9;
+  transition: all 0.18s ease;
   width: 100%;
-  max-width: 90px;
+  max-width: 85px;
   cursor: pointer;
-  box-shadow: none;
 }
 
 .techItem:hover {
   background: #eef2ff;
   border-color: #6366f1;
   box-shadow: 0 2px 10px 0 rgba(99,102,241,0.11);
-  transform: translateY(-3px) scale(1.062);
+  transform: translateY(-3px) scale(1.05);
 }
 
 .iconWrapper {
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 8px;
   margin-bottom: 0.3rem;
-  background: none;
 }
 
 .techIcon {
-  width: 26px;
-  height: 26px;
+  width: 24px;
+  height: 24px;
   object-fit: contain;
-  filter: none;
   transition: transform 0.18s;
 }
 
-.techItem:hover .techIcon {
-  transform: scale(1.11) rotate(-6deg);
-}
-
 .techName {
-  font-size: 0.83rem;
+  font-size: 0.8rem;
   color: #18181b;
   font-weight: 500;
-  margin-top: 0.13rem;
-  letter-spacing: 0.2px;
+  margin-top: 0.1rem;
   text-align: center;
-  transition: color 0.15s;
 }
 
-.techItem:hover .techName {
-  color: #6366f1;
-}
-
+/* Mobile-specific styles */
 @media (max-width: 900px) {
+  .container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
   .techGroups {
     grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
+  
   .wideGroup {
     grid-column: span 1;
   }
+  
+  .techGroup {
+    padding: 1.5rem 1rem;
+  }
+  
   .combinedSections {
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.2rem;
+  }
+  
+  .section {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  
+  .techItems {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+    gap: 0.8rem;
+  }
+  
+  .techItem {
+    padding: 0.7rem 0.2rem;
+    max-width: 75px;
+  }
+  
+  .iconWrapper {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .techIcon {
+    width: 22px;
+    height: 22px;
+  }
+  
+  .techName {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1.2rem 0.8rem;
+  }
+  
+  .title {
+    font-size: 1.6rem;
+  }
+  
+  .techGroup {
+    padding: 1.2rem 0.8rem;
+    border-radius: 12px;
+  }
+  
+  .groupTitle {
+    font-size: 1rem;
+  }
+  
+  .sectionTitle {
+    font-size: 0.85rem;
+  }
+  
+  .techItems {
+    grid-template-columns: repeat(auto-fill, minmax(95px, 4fr));
+    gap: 0.9rem;
+  }
+  
+  .techItem {
+    padding: 0.6rem 0.2rem;
+    max-width: 70px;
+    border-radius: 8px;
+  }
+  
+  .techName {
+    font-size: 0.7rem;
   }
 }
