@@ -287,7 +287,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
   font-weight: 600;
   text-decoration: none;
   transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 4px 12px rgba(46, 204, 113, 0.25);
+  box-shadow: 0 4px 12px rgba(156, 51, 242, 0.25);
   border: none;
   cursor: pointer;
   position: relative;
@@ -297,7 +297,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
 
 .phoneButtonHover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(46, 204, 113, 0.35);
+  box-shadow: 0 8px 20px rgba(127, 74, 251, 0.35);
 }
 
 .phoneButton::before {
