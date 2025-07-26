@@ -15,7 +15,7 @@ const platformLinks = [
     src: "https://yt3.ggpht.com/a-/AN66SAz5hy2hxiCCoJWb1xjAgJLlkJmGqkwP_hGv4g=s900-mo-c-c0xffffffff-rj-k-no",
     alt: "SkillRack logo",
     title: "SkillRack",
-    details: "550+ problems solved",
+    details: "600+ problems solved",
     rating: "Rank: 27,915"
   },
   {
