@@ -280,7 +280,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
-  background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+   background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
   color: white;
   padding: 0.9rem 1.8rem;
   border-radius: 50px;
@@ -307,7 +307,7 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #27ae60 0%, #2ecc71 100%);
+  background: linear-gradient(135deg, #1453e7 0%, #bc65df 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   z-index: -1;
@@ -544,6 +544,8 @@ input:focus + .focusBorder, textarea:focus + .focusBorder {
   .phoneButton {
     padding: 0.7rem 1.2rem;
     font-size: 0.9rem;
+    margin-right: 40px;
+    margin-top: 10px;
   }
   
   .phoneButtonContainer {
