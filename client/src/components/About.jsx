@@ -45,7 +45,7 @@ const About = () => {
 
                     <div className={styles.aboutActions}>
                         <a 
-                            href="https://drive.google.com/file/u/2/d/1WA1coqypiShAX8dlJJKzlEwscMNMkeV7/view?usp=drive_links" 
+                            href="https://drive.google.com/file/d/1vi0zhdQhvWiwkBqzc_Te6fvEO00QaZQ1/view?usp=sharing" 
                             target="_blank" 
                             rel="noopener noreferrer"
                             className={styles.resumeButton}
