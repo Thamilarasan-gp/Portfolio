@@ -86,7 +86,7 @@ const Navbar = () => {
         {/* Right side - Resume Button (visible when sticky) */}
         <div className={`${styles.resumeContainer} ${isSticky ? styles.visible : ''}`}>
           <a 
-            href="https://drive.google.com/file/d/1WA1coqypiShAX8dlJJKzlEwscMNMkeV7/view?usp=drive_links" 
+            href="https://drive.google.com/file/d/1vi0zhdQhvWiwkBqzc_Te6fvEO00QaZQ1/view?usp=sharing" 
             download 
             className={styles.resumeButton}
           >
