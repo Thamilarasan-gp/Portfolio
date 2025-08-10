@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Hero.module.css';
-
+import img from '../assets/heroimg.png';
 function Hero() {
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -58,7 +58,7 @@ function Hero() {
         {/* Hero Content */}
         <div className={styles.heroContent}>
           <img
-            src="https://avatars.githubusercontent.com/u/151711988?v=4"
+            src={img}
             className={`${styles.profileImage} ${isScrolled ? styles.scrolled : ''}`}
             alt="Thamil Arasan"
           />
@@ -67,7 +67,16 @@ function Hero() {
           </h2>
           <p>Full Stack Developer</p>
           <p className={styles.clients}>Passionate about Technology & Problem Solving</p>
-          <button className={styles.ctaButton}>Let's Work Together!</button>
+         <button
+  className={styles.ctaButton}
+  onClick={() => {
+    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  }}
+>
+  Let's Work Together!
+</button>
+
+         
         </div>
       </div>
     </div>
