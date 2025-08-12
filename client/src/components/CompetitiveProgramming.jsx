@@ -7,16 +7,16 @@ const platformLinks = [
     src: "https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png",
     alt: "LeetCode logo",
     title: "LeetCode",
-    details: "200+ problems solved",
-    rating: "Contest Rating: 1,414"
+    details: "250+ problems solved",
+    rating: "Contest Rating: 1,448"
   },
   {
     href: "https://www.skillrack.com/faces/resume.xhtml?id=484668&key=262cac8aa817e03417f620f487c0e526d5a868cf",
     src: "https://yt3.ggpht.com/a-/AN66SAz5hy2hxiCCoJWb1xjAgJLlkJmGqkwP_hGv4g=s900-mo-c-c0xffffffff-rj-k-no",
     alt: "SkillRack logo",
     title: "SkillRack",
-    details: "600+ problems solved",
-    rating: "Rank: 27,915"
+    details: "700+ problems solved",
+    rating: "Rank: 44,915"
   },
   {
     href: "https://www.codechef.com/users/thamilarasangp",
