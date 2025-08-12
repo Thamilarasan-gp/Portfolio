@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FiDownload } from 'react-icons/fi';
 import styles from './Navbar.module.css';
-
+import img from '../assets/heroimg.png';
 const Navbar = () => {
   const [activeItem, setActiveItem] = useState('home');
   const [isSticky, setIsSticky] = useState(false);
@@ -27,7 +27,7 @@ const Navbar = () => {
         {/* Left side - Profile (visible when sticky) */}
         <div className={`${styles.profileContainer} ${isSticky ? styles.visible : ''}`}>
           <img 
-            src="https://avatars.githubusercontent.com/u/151711988?v=4" 
+            src={img} 
             alt="Profile" 
             className={styles.profileImage}
           />
